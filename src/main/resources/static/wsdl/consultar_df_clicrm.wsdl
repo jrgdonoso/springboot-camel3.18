@@ -1,0 +1,438 @@
+<wsdl:definitions
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:ns1="http://org.apache.axis2/xsd"
+	xmlns:ns="http://consultardfcliente.soap.komatsu.cl"
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+	targetNamespace="http://consultardfcliente.soap.komatsu.cl">
+	<wsdl:documentation>consultar_df_cliente</wsdl:documentation>
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+			xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+			xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			xmlns:ns1="http://org.apache.axis2/xsd"
+			xmlns:ns="http://consultardfcliente.soap.komatsu.cl"
+			xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+			xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+			attributeFormDefault="qualified" elementFormDefault="qualified"
+			targetNamespace="http://consultardfcliente.soap.komatsu.cl">
+			<xs:element name="ConsultarDfCliente">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="I_KUNNR">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="10" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="I_KKBER">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="4" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>						
+						<xs:element name="I_BUKRS">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="4" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="I_SPART">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="2" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="I_VKORG">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="4" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="I_VTWEG">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="2" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>																		
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ConsultarDfClienteResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="GT_RETURNS" type="ns:gt_returnType" />
+						<xs:element name="E_OPEN" type="ns:e_openType" />
+						<xs:element name="E_KNKK" type="ns:e_knkkType" />
+						<xs:element name="E_BLOQ" type="ns:e_bloqType" />
+						<xs:element name="E_VIAS_PAGO">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="10"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="E_VAL_COMERCIAL">
+							<xs:simpleType>
+								<xs:restriction base="xs:decimal">
+									<xs:totalDigits value="17"/>
+									<xs:fractionDigits value="2"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>																					          												
+						<xs:element name="E_TXTBUSAB">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="30"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="E_SUM_OPENS">
+							<xs:simpleType>
+								<xs:restriction base="xs:decimal">
+									<xs:totalDigits value="17"/>
+									<xs:fractionDigits value="2"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="E_PERCENTAGE">
+							<xs:simpleType>
+								<xs:restriction base="xs:integer">
+									<xs:totalDigits value="3"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="E_KNKLI">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="10"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="E_DELTA_TO_LIMIT">
+							<xs:simpleType>
+								<xs:restriction base="xs:decimal">
+									<xs:totalDigits value="17"/>
+									<xs:fractionDigits value="2"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>	
+						<xs:element name="E_CREDITLIMIT">
+							<xs:simpleType>
+								<xs:restriction base="xs:decimal">
+									<xs:totalDigits value="17"/>
+									<xs:fractionDigits value="2"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>	
+						<xs:element name="E_COND_PAGO">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="4"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>																																		
+						<xs:element name="E_CMWAE">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="5"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>												
+						<xs:element name="E_BUSAB">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="2"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>																			
+					</xs:sequence>
+				</xs:complexType>									
+			</xs:element>               
+			<xs:complexType name="gt_returnType">
+	           <xs:sequence>
+	           <xs:element name="GT_RETURN" minOccurs="0" maxOccurs="unbounded">
+	           <xs:complexType>
+					<xs:sequence>
+						<xs:element name="TYPE">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="1" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="MESSAGE">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="220" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+				</xs:element>
+				</xs:sequence>	
+         	</xs:complexType>
+            <xs:complexType name="e_openType">
+            	<xs:sequence>
+					<xs:element name="SPECIALS">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="17"/>
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>					
+					<xs:element name="ORDER">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="21"/>
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="ORDEN_SECURE">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="21"/>
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>	
+					<xs:element name="ITEMS">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="17"/>
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>		
+					<xs:element name="INVOICE_SECURE">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="21"/>
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>	
+					<xs:element name="INVOICE">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="21"/>
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>	
+					<xs:element name="DELIVERY_SECURE">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="21"/>
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>	
+					<xs:element name="DELIVERY">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="21"/>
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>																														
+				</xs:sequence>
+            </xs:complexType>      
+            <xs:complexType name="e_knkkType">
+            	<xs:sequence>
+					<xs:element name="XCHNG">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="1" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="UEDAT">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="8" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="SSOBL">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="17"/>
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="SKFOR">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="17"/>
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="SBGRP">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="3" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="SAUFT">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="17"/>
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="KNKLI">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="10" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="KLIMK">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="17"/>
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>	
+					<xs:element name="DBRTG">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="5" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="CTLPC">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="3" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="CRBLB">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="1" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="CASHD">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="8" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>						
+					<xs:element name="CASHC">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="5" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>																																		
+					<xs:element name="CASHA">
+						<xs:simpleType>
+							<xs:restriction base="xs:decimal">
+								<xs:totalDigits value="15"/>
+								<xs:fractionDigits value="2"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>																			
+				</xs:sequence>
+            </xs:complexType>   
+            <xs:complexType name="e_bloqType">
+            	<xs:sequence>
+					<xs:element name="SOPVTA">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="1" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="PEDIDO">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="1" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="FACTURA">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="1" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="ENTREGA">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="1" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>															
+				</xs:sequence>
+            </xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="ConsultarDfClienteRequest">
+		<wsdl:part element="ns:ConsultarDfCliente" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ConsultarDfClienteResponse">
+		<wsdl:part element="ns:ConsultarDfClienteResponse"
+			name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="ConsultarDfClientePortType">
+		<wsdl:operation name="ConsultarDfCliente">
+			<wsdl:input message="ns:ConsultarDfClienteRequest"
+				wsaw:Action="urn:ConsultarDfCliente">
+			</wsdl:input>
+			<wsdl:output message="ns:ConsultarDfClienteResponse"
+				wsaw:Action="urn:ConsultarDfClienteResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ConsultarDfClienteSoapBinding"
+		type="ns:ConsultarDfClientePortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="ConsultarDfCliente">
+			<soap:operation soapAction="urn:ConsultarDfCliente"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ConsultarDfCliente">
+		<wsdl:port name="ConsultarDfClienteSoapEndpoint"
+			binding="ns:ConsultarDfClienteSoapBinding">
+			<soap:address
+				location="http://localhost:8181/cxf/consultar_df_cliente/" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

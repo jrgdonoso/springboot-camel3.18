@@ -1,0 +1,335 @@
+<wsdl:definitions
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:ns1="http://org.apache.axis2/xsd"
+	xmlns:ns="http://consultarcliente.komatsu.cl"
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+	targetNamespace="http://consultarcliente.komatsu.cl">
+	<wsdl:documentation>consultar_cliente</wsdl:documentation>
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+			xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+			xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			xmlns:ns1="http://org.apache.axis2/xsd"
+			xmlns:ns="http://consultarcliente.komatsu.cl"
+			xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+			xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+			attributeFormDefault="qualified" elementFormDefault="qualified"
+			targetNamespace="http://consultarcliente.komatsu.cl">
+			<xs:element name="ConsultarCliente">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="I_KUNNR">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="10" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="I_BUKRS">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="4" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ConsultarClienteResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="GT_RETURNS" type="ns:gt_returnType" />
+						<xs:element name="E_KNA1" type="ns:e_knaType" />
+						<xs:element name="GT_ADRS12" type="ns:gt_adr12Type" />
+						<xs:element name="GT_ADRS6" type="ns:gt_adr6Type" />
+						<xs:element name="GT_KNVVS" type="ns:gt_knvvs" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		
+            <xs:complexType name="gt_returnType">
+	            <xs:sequence>
+		            <xs:element name="GT_RETURN" minOccurs="0" maxOccurs="unbounded">
+		            <xs:complexType>
+						<xs:sequence>
+							<xs:element name="TYPE">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="1" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="MESSAGE">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="220" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+					</xs:element>
+				</xs:sequence>		
+            </xs:complexType>
+        
+            <xs:complexType name="e_knaType">
+            	<xs:sequence>
+								<xs:element name="KUNNR">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="10" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="NAME1">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="35" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="SORTL">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="10" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="NAME3">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="35" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="STRAS">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="35" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="ORT01">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="35" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="ORT02">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="35" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="LAND1">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="3" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="REGIO">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="3" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="TELF1">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="16" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="BRSCH">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="4" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="LZONE">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="10" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="KTOKD">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="4" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+            </xs:complexType>
+
+        
+            <xs:complexType name="gt_adr12Type">
+            
+            <xs:sequence>
+		            <xs:element name="GT_ADR12" minOccurs="0" maxOccurs="unbounded">
+		            <xs:complexType>
+		            
+            				<xs:sequence>
+								<xs:element name="URI_ADDR">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="2048" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="URI_TYPE">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="3" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+					</xs:complexType>
+					</xs:element>
+				</xs:sequence>			
+            </xs:complexType>
+        
+        
+            <xs:complexType name="gt_adr6Type">
+             <xs:sequence>
+		            <xs:element name="GT_ADR6" minOccurs="0" maxOccurs="unbounded">
+		            <xs:complexType>
+		            
+            				<xs:sequence>
+								<xs:element name="SMTP_ADDR">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="241" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+					</xs:complexType>
+					</xs:element>
+				</xs:sequence>			
+            </xs:complexType>
+        
+        	<xs:complexType name="gt_knvvs">
+        	<xs:sequence>
+	            <xs:element name="GT_KNVV" minOccurs="0" maxOccurs="unbounded">
+	            <xs:complexType>
+	            <xs:sequence>
+									<xs:element name="VKORG">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="4" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="VTWEG">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="SPART">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="KDGRP">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="VKBUR">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="4" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="KKBER">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="4" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="VKGRP">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="3" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="ZTERM">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="4" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+					</xs:complexType>
+	            </xs:element>
+	        </xs:sequence>
+	        </xs:complexType>
+        </xs:schema>
+	</wsdl:types>
+	<wsdl:message name="ConsultarClienteRequest">
+		<wsdl:part element="ns:ConsultarCliente" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ConsultarClienteResponse">
+		<wsdl:part element="ns:ConsultarClienteResponse"
+			name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="ConsultarClientePortType">
+		<wsdl:operation name="ConsultarCliente">
+			<wsdl:input message="ns:ConsultarClienteRequest"
+				wsaw:Action="urn:ConsultarCliente">
+			</wsdl:input>
+			<wsdl:output message="ns:ConsultarClienteResponse"
+				wsaw:Action="urn:ConsultarClienteResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ConsultarClienteSoapBinding"
+		type="ns:ConsultarClientePortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="ConsultarCliente">
+			<soap:operation soapAction="urn:ConsultarCliente"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ConsultarCliente">
+		<wsdl:port name="ConsultarClienteSoapEndpoint"
+			binding="ns:ConsultarClienteSoapBinding">
+			<soap:address
+				location="http://localhost:8181/cxf/consultar_cliente/" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
