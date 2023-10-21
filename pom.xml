@@ -1,175 +1,77 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
   <modelVersion>4.0.0</modelVersion>
-  <groupId>cl.komatsu</groupId>
+  <groupId>jd.camel</groupId>
   <artifactId>KCC-Migracion-Integraciones-Fuse-CRM-Cliente</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>KCC-Migracion-Integraciones-Fuse-CRM-Cliente</name>
-  <description>Migracion CRM servicios Clientes</description>
+  <description>Migracion CRM Cliente</description>
 
   <properties>
-    <compiler-plugin.version>3.8.1</compiler-plugin.version>
-    <maven.compiler.release>11</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <spring.boot-version>2.7.6</spring.boot-version>
-    <surefire.plugin.version>3.0.0-M4</surefire.plugin.version>
-    <jkube.generator.from>registry.access.redhat.com/ubi8/openjdk-17:1.16-1.1687182768</jkube.generator.from>
-    <camel.version>3.18.3.redhat-00025</camel.version>
-    <spring.cloud-version>2022.0.1</spring.cloud-version>
-    <spring.cloud.kubernetes-config-version>1.0.1.RELEASE</spring.cloud.kubernetes-config-version>
-    <openshift-maven-plugin-version>1.9.1.redhat-00004</openshift-maven-plugin-version>
-    <jkube.enricher.jkube-service.expose>true</jkube.enricher.jkube-service.expose>
-    <cxf.version>3.5.3.redhat-00033</cxf.version>
+    <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+    <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+    <fuse.bom.version>7.8.0.fuse-sb2-780038-redhat-00001</fuse.bom.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
-
-      <!--<dependency>
-        <groupId>com.sap.conn.jco</groupId>
-        <artifactId>sapjco3</artifactId>
-        <version>3.1.4</version>
-      </dependency>-->
-
-      <!-- Spring Boot BOM -->
       <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${spring.boot-version}</version>
+        <groupId>org.jboss.redhat-fuse</groupId>
+        <artifactId>fuse-springboot-bom</artifactId>
+        <version>${fuse.bom.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <!-- Camel BOM -->
-      <dependency>
-        <groupId>org.apache.camel.springboot</groupId>
-        <artifactId>camel-spring-boot-bom</artifactId>
-        <version>${camel.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <version>${spring.cloud-version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
     </dependencies>
   </dependencyManagement>
 
   <dependencies>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-spring-boot-starter</artifactId>
+    </dependency>
 
-    <!-- Spring Boot -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-
       <exclusions>
         <exclusion>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-starter-tomcat</artifactId>
         </exclusion>
       </exclusions>
-
     </dependency>
-
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-undertow</artifactId>
     </dependency>
-
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
 
 
-<!---LIB LOCAL SAP-->
-     
-     <dependency>
-      <groupId>com.sap.conn.jco</groupId>
-      <artifactId>sapjco3</artifactId>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/lib/sapjco3.jar</systemPath>
-      <version>3.1.4</version>
+
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-cxf-starter</artifactId>
     </dependency>
 
 
     <dependency>
-      <groupId>com.sap.conn.idoc</groupId>
-      <artifactId>sapidoc3</artifactId>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/lib/sapidoc3.jar</systemPath>
-      <version>3.1.1</version>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jaxb-starter</artifactId>
     </dependency>
 
-   <!--
-    *It doesn't work (Could not resolve dependencies):
-    this should choose version dependency whith the version boom selected, in this case spring-camel 3.18
-   -->
-   <!-- <dependency>
-      <groupId>org.fusesource</groupId>
-      <artifactId>camel-sap-starter</artifactId>
-      <version>${camel.version}</version>
-  </dependency>-->
-
-  <!-- *It doesn't work (Could not resolve dependencies):
-    According to the documentation, this should work, but it is not the version of the boom I am using.-->
-  <!--<dependency>
-    <groupId>org.fusesource</groupId>
-    <artifactId>camel-sap-starter</artifactId>
-    <version>3.20.1.redhat-00031</version>
-</dependency> -->
-
-
-<!--
-  *latest version for 7.x but not compatible with spring-camel boom
-<dependency>
-  <groupId>org.fusesource</groupId>
-  <artifactId>camel-sap-starter</artifactId>
-  <version>7.12.0.fuse-7_12_0-00019-redhat-00001</version>
-</dependency>-->
 
 
 
 
-
-
-
-    <!-- Camel -->
-    <dependency>
-      <groupId>org.apache.camel.springboot</groupId>
-      <artifactId>camel-spring-boot-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel.springboot</groupId>
-      <artifactId>camel-bean-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel.springboot</groupId>
-      <artifactId>camel-http-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel.springboot</groupId>
-      <artifactId>camel-jackson-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel.springboot</groupId>
-      <artifactId>camel-cxf-soap-starter </artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel.springboot</groupId>
-      <artifactId>camel-soap-starter</artifactId>
-    </dependency>
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
-      <version>${cxf.version}</version>
       <exclusions>
         <exclusion>
           <groupId>org.springframework.boot</groupId>
@@ -177,36 +79,77 @@
         </exclusion>
       </exclusions>
     </dependency>
+
+
+
+
+
+
+
+    <!--SAP-->
     <dependency>
-      <groupId>org.apache.santuario</groupId>
-      <artifactId>xmlsec</artifactId>
-      <version>3.0.0.redhat-00001</version>
+      <groupId>org.fusesource</groupId>
+      <artifactId>camel-sap-starter</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.cxf</groupId>
-      <artifactId>cxf-rt-ws-security</artifactId>
-      <version>${cxf.version}</version>
+      <groupId>com.sap.conn.jco</groupId>
+      <artifactId>sapjco3</artifactId>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/sapjco3.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>com.sap.conn.idoc</groupId>
+      <artifactId>sapidoc3</artifactId>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/sapidoc3.jar</systemPath>
     </dependency>
 
+
+
+
+
+
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-sql-starter</artifactId>
+    </dependency>
+
+
+    <dependency>
+      <groupId>com.microsoft.sqlserver</groupId>
+      <artifactId>mssql-jdbc</artifactId>
+    </dependency>
+
+
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-http-jetty</artifactId>
+    </dependency>
 
 
   </dependencies>
   <build>
+    <defaultGoal>spring-boot:run</defaultGoal>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>${compiler-plugin.version}</version>
+        <version>${maven-compiler-plugin.version}</version>
         <configuration>
-          <compilerArgs>
-            <arg>-parameters</arg>
-          </compilerArgs>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.springframework.boot</groupId>
+        <groupId>org.jboss.redhat-fuse</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>${spring.boot-version}</version>
+        <version>${fuse.bom.version}</version>
         <executions>
           <execution>
             <goals>
@@ -215,11 +158,8 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>${surefire.plugin.version}</version>
-      </plugin>
+
+
       <plugin>
         <groupId>org.apache.cxf</groupId>
         <artifactId>cxf-codegen-plugin</artifactId>
@@ -228,7 +168,6 @@
           <execution>
             <id>generate-sources</id>
             <phase>generate-sources</phase>
-
             <configuration>
               <sourceRoot>${basedir}/src/main/java</sourceRoot>
               <wsdlRoot>${basedir}/src/main/resources/static/wsdl</wsdlRoot>
@@ -248,50 +187,7 @@
     </plugins>
   </build>
 
-  <profiles>
-    <profile>
-      <id>openshift</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.springframework.cloud</groupId>
-          <artifactId>spring-cloud-starter-kubernetes-config</artifactId>
-          <version>${spring.cloud.kubernetes-config-version}</version>
-        </dependency>
-      </dependencies>
-      <build>
-        <defaultGoal>install</defaultGoal>
-        <plugins>
-          <plugin>
-            <groupId>org.eclipse.jkube</groupId>
-            <artifactId>openshift-maven-plugin</artifactId>
-            <version>${openshift-maven-plugin-version}</version>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>resource</goal>
-                  <goal>build</goal>
-                  <goal>apply</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
-
   <repositories>
-    <!--<repository>
-      <id>release.fusesource.org</id>
-      <name>FuseSource Release Repository</name>
-      <url>http://repo.fusesource.com/nexus/content/repositories/releases</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-    </repository>-->
     <repository>
       <id>redhat-ga-repository</id>
       <url>https://maven.repository.redhat.com/ga</url>

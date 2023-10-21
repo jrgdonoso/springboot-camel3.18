@@ -2,8 +2,10 @@ package cl.komatsu.rutas;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.cxf.common.DataFormat;
-import org.apache.camel.component.cxf.jaxws.CxfEndpoint;
+import org.apache.camel.component.cxf.CxfEndpoint;
+import org.apache.camel.component.cxf.DataFormat;
+//import org.apache.camel.component.cxf.common.DataFormat;
+//import org.apache.camel.component.cxf.jaxws.CxfEndpoint;
 import org.apache.cxf.Bus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +22,7 @@ public class RutaSoapConsultaClienteCrmKch extends RouteBuilder {
     private CamelContext miCamelContext;
     private Bus miBus;
 
-    Logger LOGGER = LoggerFactory.getLogger(RutaSoapConsultaClienteCrmKch.class);
+    Logger LOGGER = LoggerFactory.getLogger(RutaSoapCrearClienteCrmKch.class);
 
 
     @Autowired
@@ -35,7 +37,7 @@ public class RutaSoapConsultaClienteCrmKch extends RouteBuilder {
     public CxfEndpoint consultarClienteEndpoint() throws ClassNotFoundException {
 
         CxfEndpoint cxfEndpoint = new CxfEndpoint();
-        cxfEndpoint.setAddress("/consultar_cliente");
+        cxfEndpoint.setAddress(this.miEnviromentVar.getENDPOINTSOAPCONSULTARCLIENTE());
         cxfEndpoint.setServiceClass("cl.komatsu.consultarcliente.ConsultarClientePortType");
         cxfEndpoint.setDataFormat(DataFormat.PAYLOAD);
 

@@ -21,3 +21,9 @@ If you want to learn more about creating good readme files then refer the follow
 
 
 
+
+$ENV:APPPORT=8080
+$ENV:ENDPOINTSOAPCONSULTARCLIENTE='/cxf/consultar_cliente'
+$ENV:ENDPOINTSOAPCONSULTARDFCLIENTE='/cxf/consultar_df_cliente'
+$ENV:ENDPOINTSOAPCREARCLIENTE='/cxf/crear_cliente'
+$ENV:ENDPOINTSOAPSIMULARCRREARCLIENTE='/cxf/simular_crear_cliente'

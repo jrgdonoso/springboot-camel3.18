@@ -1,4 +1,4 @@
-FROM registry.redhat.io/fuse7/fuse-java-openshift-jdk11-rhel8:latest
+FROM registry.redhat.io/fuse7/fuse-eap-openshift-jdk8-rhel7:latest
 
 WORKDIR /deployment
 
